@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2014 7:49:42 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="entity.Orders" table="orders" schema="dbo" catalog="warehouseDB">
+        <id name="orderId" type="int">
+            <column name="OrderId" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="products" class="entity.Products" fetch="select">
+            <column name="ProductId" />
+        </many-to-one>
+        <many-to-one name="users" class="entity.Users" fetch="select">
+            <column name="UserId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="payment" class="entity.Payment" fetch="select">
+            <column name="PaymentID" />
+        </many-to-one>
+        <property name="orderDate" type="timestamp">
+            <column name="orderDate" length="23" not-null="true" />
+        </property>
+        <property name="invoiceId" type="java.lang.Integer">
+            <column name="InvoiceId" />
+        </property>
+        <property name="orderSum" type="big_decimal">
+            <column name="orderSum" precision="18" not-null="true" />
+        </property>
+        <set name="invoices" table="Invoic_Order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="OrderID" not-null="true" />
+            </key>
+            <many-to-many entity-name="entity.Invoice">
+                <column name="InvoiceID" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

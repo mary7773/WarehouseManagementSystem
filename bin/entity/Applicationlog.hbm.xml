@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2014 7:49:42 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="entity.Applicationlog" table="applicationlog" schema="dbo" catalog="warehouseDB">
+        <id name="logid" type="int">
+            <column name="Logid" />
+            <generator class="native" />
+        </id>
+        <property name="userId" type="int">
+            <column name="UserId" not-null="true" />
+        </property>
+        <property name="log" type="string">
+            <column name="log" not-null="true" />
+        </property>
+        <property name="dateLogin" type="timestamp">
+            <column name="date_login" length="23" not-null="true" />
+        </property>
+        <property name="dateLogout" type="timestamp">
+            <column name="date_logout" length="23" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

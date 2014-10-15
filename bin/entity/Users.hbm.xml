@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 1, 2014 7:49:42 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="entity.Users" table="Users" schema="dbo" catalog="warehouseDB">
+        <id name="userId" type="int">
+            <column name="UserId" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="usersGroups" class="entity.UsersGroups" fetch="select">
+            <column name="UserGroupID" />
+        </many-to-one>
+        <many-to-one name="cities" class="entity.Cities" fetch="select">
+            <column name="CityID" />
+        </many-to-one>
+        <property name="code" type="string">
+            <column name="Code" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="FirstName" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LastName" />
+        </property>
+        <property name="company" type="string">
+            <column name="Company" />
+        </property>
+        <property name="mol" type="string">
+            <column name="MOL" />
+        </property>
+        <property name="address" type="string">
+            <column name="Address" />
+        </property>
+        <property name="address2" type="string">
+            <column name="Address2" />
+        </property>
+        <property name="phone" type="string">
+            <column name="Phone" />
+        </property>
+        <property name="fax" type="string">
+            <column name="Fax" />
+        </property>
+        <property name="email" type="string">
+            <column name="eMail" />
+        </property>
+        <property name="taxNo" type="string">
+            <column name="TaxNo" />
+        </property>
+        <property name="bulstat" type="string">
+            <column name="Bulstat" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="BankName" />
+        </property>
+        <property name="bankCode" type="string">
+            <column name="BankCode" />
+        </property>
+        <property name="bankAcct" type="string">
+            <column name="BankAcct" />
+        </property>
+        <property name="bankVatname" type="string">
+            <column name="BankVATName" />
+        </property>
+        <property name="bankVatcode" type="string">
+            <column name="BankVATCode" />
+        </property>
+        <property name="bankVatacct" type="string">
+            <column name="BankVATAcct" />
+        </property>
+        <property name="priceGroup" type="java.lang.Integer">
+            <column name="PriceGroup" />
+        </property>
+        <property name="discount" type="java.lang.Double">
+            <column name="Discount" precision="53" scale="0" />
+        </property>
+        <property name="type" type="java.lang.Integer">
+            <column name="Type" />
+        </property>
+        <property name="isVeryUsed" type="java.lang.Integer">
+            <column name="IsVeryUsed" />
+        </property>
+        <property name="userRealTime" type="timestamp">
+            <column name="UserRealTime" length="23" />
+        </property>
+        <property name="isDeleted" type="java.lang.Boolean">
+            <column name="IsDeleted" />
+        </property>
+        <property name="cardNumber" type="java.lang.Integer">
+            <column name="CardNumber" />
+        </property>
+        <property name="userName" type="string">
+            <column name="UserName" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" not-null="true" />
+        </property>
+        <set name="orderses" table="orders" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" not-null="true" />
+            </key>
+            <one-to-many class="entity.Orders" />
+        </set>
+        <set name="payments" table="Payment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" not-null="true" />
+            </key>
+            <one-to-many class="entity.Payment" />
+        </set>
+    </class>
+</hibernate-mapping>
